@@ -67,6 +67,7 @@ const ViewNewLogin = ({ navigation }) => {
 
 
         try {
+
             // Manda junto com o headers as informações para authentications confirmar.
             const response = await axios.get("http://177.44.248.60:3000/auth", {
                 headers: {
@@ -75,14 +76,16 @@ const ViewNewLogin = ({ navigation }) => {
                 }
             })
 
-            const json = await response.json();
-            console.log('json=>', json);
+            // const json = await response.json();
+            // console.log('json=>', json);
 
             setLoading(false);
             if (response.status === 200) {
                 const json = await response.json();
                 console.log('json=>', json);
+                
                 saveUser(user, pass);
+
                 navigation.reset({
                     index: 0,
                     routes: [{ name: "ViewUsers" }]
@@ -90,13 +93,29 @@ const ViewNewLogin = ({ navigation }) => {
             } else if (response.status === 400) {
                 Alert.alert('Erro ao login', response.data.message);
             }
+
         } catch (error) {
             Alert.alert('Erro ao login', response.data.message);
-
         } finally {
             setLoading(false);
         }
 
+
+        const json = await response.json();
+        console.log('json=>', json);
+
+        setLoading(false);
+        if (response.status === 200) {
+            const json = await response.json();
+            console.log('json=>', json);
+            saveUser(user, pass);
+            navigation.reset({
+                index: 0,
+                routes: [{ name: "ViewUsers" }]
+            });
+        } else if (response.status === 400) {
+            Alert.alert('Erro ao login', response.data.message);
+        }
 
     }
 

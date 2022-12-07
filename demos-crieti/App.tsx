@@ -26,8 +26,12 @@ import { useFonts } from 'expo-font'; //1
 import { AppProvider } from "./src/context/AppContext";
 // import ViewSkeleton from "./src/screens/ViewSkeleton";
 import ViewNewLogin from "./src/screens/ViewNewLogin";
+import axios from "axios";
 
 const Stack = createNativeStackNavigator();
+
+
+
 
 export default function App() {
 
